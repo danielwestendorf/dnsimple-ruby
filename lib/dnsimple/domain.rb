@@ -46,7 +46,7 @@ module DNSimple
       when 200
         "registered"
       when 404
-        new(response["domain"])
+        response["domain"]
       else
         raise RequestError.new("Error checking availability", response)
       end
