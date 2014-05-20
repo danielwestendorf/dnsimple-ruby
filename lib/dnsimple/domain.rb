@@ -46,7 +46,7 @@ module DNSimple
       when 200
         nil
       when 404
-        response.body
+        JSON.parse(response.body)
       else
         raise RequestError.new("Error checking availability", response)
       end
