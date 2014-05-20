@@ -44,9 +44,9 @@ module DNSimple
 
       case response.code
       when 200
-        "registered"
+        nil
       when 404
-        response["domain"]
+        response.body
       else
         raise RequestError.new("Error checking availability", response)
       end
