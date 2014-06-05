@@ -241,7 +241,7 @@ module DNSimple
 
       case response.code
       when 201
-        DNSimple::Membership.new(r["membership"])
+        DNSimple::Membership.new(response["membership"])
       else
         raise RequestError.new("Error adding membership", response)
       end
