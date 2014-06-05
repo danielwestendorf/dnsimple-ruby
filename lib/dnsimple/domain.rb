@@ -224,26 +224,28 @@ module DNSimple
       end
     end
 
-    def remove_member(id, options={})
+    def remove_membership(id, options={})
       response = DNSimple::Client.delete("/v1/domains/#{name}/memberships/#{id}")
 
+      p response
       case response.code
       when 204
         true
       else
-        raise RequestError.new("Error removing service", response)
+        raise RequestError.new("Error removing membership", response)
       end
     end
 
-    def add_member(email, options={})
+    def add_membership(email, options={})
       options.merge!(:body => {:membership => {:email => email}})
       response = DNSimple::Client.post("/v1/domains/#{name}/memberships")
 
+      p response
       case response.code
       when 201
         DNSimple::Membership.new(r["membership"])
       else
-        raise RequestError.new("Error removing service", response)
+        raise RequestError.new("Error adding membership", response)
       end
     end
 
