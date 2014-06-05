@@ -19,5 +19,5 @@ module DNSimple
   end
 
 
-  class ValidationError < Error; end
+  class ValidationError < RequestError; end
 end
