@@ -220,7 +220,7 @@ module DNSimple
       when 200
         response.map { |r| DNSimple::Membership.new(r["membership"]) }
       else
-        raise RequestError.new("Error listing available services", response)
+        raise RequestError.new("Error listing memberships", response)
       end
     end
 
@@ -242,6 +242,8 @@ module DNSimple
       case response.code
       when 201
         DNSimple::Membership.new(response["membership"])
+      when 400
+        raise Error.new("Validation has failed")
       else
         raise RequestError.new("Error adding membership", response)
       end
