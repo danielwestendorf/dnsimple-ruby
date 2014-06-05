@@ -18,4 +18,6 @@ module DNSimple
   class AuthenticationFailed < Error
   end
 
+
+  class ValidationError < Error; end
 end

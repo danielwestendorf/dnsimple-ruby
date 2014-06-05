@@ -242,8 +242,8 @@ module DNSimple
       case response.code
       when 201
         DNSimple::Membership.new(response["membership"])
-      when 400
-        raise Error.new("Validation has failed")
+      when 422
+        raise ValidationError.new("Validation has failed", response)
       else
         raise RequestError.new("Error adding membership", response)
       end
