@@ -227,7 +227,6 @@ module DNSimple
     def remove_membership(id, options={})
       response = DNSimple::Client.delete("/v1/domains/#{name}/memberships/#{id}")
 
-      p response
       case response.code
       when 204
         true
@@ -238,9 +237,8 @@ module DNSimple
 
     def add_membership(email, options={})
       options.merge!(:body => {:membership => {:email => email}})
-      response = DNSimple::Client.post("/v1/domains/#{name}/memberships")
+      response = DNSimple::Client.post("/v1/domains/#{name}/memberships", options)
 
-      p response
       case response.code
       when 201
         DNSimple::Membership.new(r["membership"])
