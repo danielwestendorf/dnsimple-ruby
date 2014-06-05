@@ -219,6 +219,9 @@ module DNSimple
       case response.code
       when 200
         response.map { |r| DNSimple::Membership.new(r["membership"]) }
+      else
+        raise RequestError.new("Error listing available services", response)
+      end
     end
 
     def remove_member(id, options={})
