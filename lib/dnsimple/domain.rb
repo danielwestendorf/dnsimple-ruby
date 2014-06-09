@@ -213,6 +213,28 @@ module DNSimple
       end
     end
 
+    def enable_auto_renewal
+      response = DNSimple::Client.delete("/v1/domains/#{name}/auto_renewal")
+
+      case response.code
+      when 200
+        true
+      else
+        false
+      end
+    end
+
+    def disable_auto_renewal
+      response = DNSimple::Client.post("/v1/domains/#{name}/auto_renewal")
+
+      case response.code
+      when 200
+        true
+      else
+        false
+      end
+    end
+
     def get_memberships(options={})
       response = DNSimple::Client.get("/v1/domains/#{name}/memberships",options)
 
