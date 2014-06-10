@@ -44,7 +44,7 @@ module DNSimple
 
       case response.code
       when 200
-        nil
+        JSON.parse(response.body)
       when 404
         JSON.parse(response.body)
       else
