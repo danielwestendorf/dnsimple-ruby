@@ -129,7 +129,7 @@ module DNSimple
       options = {body: {domain: {name: self.name}}}
       response = DNSimple::Client.post("/v1/domain_renewals", options)
       case response.code
-      when 200
+      when 201
         self.expires_on = response['domain']['expires_on']
         self.updated_at = response['domain']['updated_at']
       else
