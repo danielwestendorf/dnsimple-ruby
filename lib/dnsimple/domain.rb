@@ -124,6 +124,19 @@ module DNSimple
       auto_renew!(:post)
     end
 
+    # renew the domain
+    def renew!
+      options = {body: {domain: {name: self.name}}}
+      response = DNSimple::Client.post("/v1/domain_renewals", options)
+      case response.code
+      when 200
+        self.expires_on = response['domain']['expires_on']
+        self.updated_at = response['domain']['updated_at']
+      else
+        raise RequestError.new("Error renewing domain", response)
+      end
+    end
+
     # Disable auto_renew on the domain
     def disable_auto_renew
       return unless auto_renew
