@@ -132,6 +132,7 @@ module DNSimple
       when 201
         self.expires_on = response['domain']['expires_on']
         self.updated_at = response['domain']['updated_at']
+        return self
       else
         raise RequestError.new("Error renewing domain", response)
       end
