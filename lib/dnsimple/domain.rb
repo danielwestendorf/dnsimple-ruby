@@ -27,13 +27,13 @@ module DNSimple
 
     # User ID in DNSimple
     attr_accessor :user_id
-    
+
     # Is the domain lockable
     attr_accessor :lockable
-    
+
     # Is the domain set to autorenew
     attr_accessor :auto_renew
-    
+
     # Is the whois information protected
     attr_accessor :whois_protected
 
@@ -213,9 +213,6 @@ module DNSimple
         raise RequestError.new("Error removing service", response)
       end
     end
-
-
-    private
 
     def auto_renew!(method)
       response = DNSimple::Client.send(method, "/v1/domains/#{name}/auto_renewal")
